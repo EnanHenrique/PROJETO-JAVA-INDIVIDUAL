@@ -10,30 +10,31 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class TelaMonitoramento extends javax.swing.JFrame {
 
+    //Variáveis estaticas 
     Boolean lerDados = true;
 
     Integer contador = 0;
-    
-    Integer valorMaximoCpu = 1;
+
+    Integer valorMaximoCpu = 0;
     Integer mediaCpu = 0;
     Integer valorMinimoCpu = 500;
     Integer totalValoresCpu = 0;
-    
-    Integer valorMaximoDisco = 1;
+
+    Integer valorMaximoDisco = 0;
     Integer mediaDisco = 0;
     Integer valorMinimoDisco = 500;
     Integer totalValoresDisco = 0;
-    
-    Integer valorMaximoRam = 1;
+
+    Integer valorMaximoRam = 0;
     Integer mediaRam = 0;
     Integer valorMinimoRam = 500;
     Integer totalValoresRam = 0;
-    
+
     public TelaMonitoramento() {
         //Comando " UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName()); " 
         //para mudar a cor de fundo da barra de progresso atraves do properties
-        // Try catch: Exigido para tratamento de exceções tratamento de códigos
-        //que podem não ser totalmente atendidos e gerarem alguma exceção ou erro
+        // Try catch: Exigido para tratamento de exceções no tratamento de códigos
+        //que podem não ser totalmente atendidos e gerarem alguma exceção ou erro.
         //O try consegue recuperar erros que possam ocorrer no código fornecido em seu bloco
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -46,9 +47,9 @@ public class TelaMonitoramento extends javax.swing.JFrame {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(TelaMonitoramento.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         initComponents();
-        
+
         //Mudando cor de fundo da Tela
         getContentPane().setBackground(Color.DARK_GRAY);
     }
@@ -342,8 +343,8 @@ public class TelaMonitoramento extends javax.swing.JFrame {
 
     private void botaoLerDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLerDadosActionPerformed
         //Simulando dados para os componentes
-        Integer dadosCpu = ThreadLocalRandom.current().nextInt(0, 101);
-        Integer dadosDisco = ThreadLocalRandom.current().nextInt(0, 101);
+        Integer dadosCpu = ThreadLocalRandom.current().nextInt(1, 101);
+        Integer dadosDisco = ThreadLocalRandom.current().nextInt(1, 101);
         Integer dadosRam = ThreadLocalRandom.current().nextInt(31, 101);
 
         //Inserindo valores nas barras de progresso
@@ -353,11 +354,11 @@ public class TelaMonitoramento extends javax.swing.JFrame {
 
         //Contador para fazer a divisao e pegar a media dos valores
         contador++;
-        
-        //Inserindo valores maximos, minimos e media da CPU
+
+        //Inserindo valores maximos, minimos e media da *CPU*
         totalValoresCpu += dadosCpu;
         mediaCpu = totalValoresCpu / contador;
-        
+
         if (dadosCpu > valorMaximoCpu) {
             valorMaximoCpu = dadosCpu;
         }
@@ -368,11 +369,12 @@ public class TelaMonitoramento extends javax.swing.JFrame {
         lblValorMaximoCpu.setText(valorMaximoCpu.toString() + "%");
         lblValorMinimoCpu.setText(valorMinimoCpu.toString() + "%");
         lblValorMediaCpu.setText(mediaCpu.toString() + "%");
+        //------------------------------------------------------------------//
 
-        //Inserindo valores maximos, minimos e media do Disco
+        //Inserindo valores maximos, minimos e media do *Disco*
         totalValoresDisco += dadosDisco;
         mediaDisco = totalValoresDisco / contador;
-        
+
         if (dadosDisco > valorMaximoDisco) {
             valorMaximoDisco = dadosDisco;
         }
@@ -383,11 +385,12 @@ public class TelaMonitoramento extends javax.swing.JFrame {
         lblValorMaximoDisco.setText(valorMaximoDisco.toString() + "%");
         lblValorMinimoDisco.setText(valorMinimoDisco.toString() + "%");
         lblValorMediaDisco.setText(mediaDisco.toString() + "%");
-        
-        //Inserindo valores maximos, minimos e media do Disco
+        //------------------------------------------------------------------//
+
+        //Inserindo valores maximos, minimos e media da *RAM*
         totalValoresRam += dadosRam;
         mediaRam = totalValoresRam / contador;
-        
+
         if (dadosRam > valorMaximoRam) {
             valorMaximoRam = dadosRam;
         }
@@ -398,7 +401,7 @@ public class TelaMonitoramento extends javax.swing.JFrame {
         lblValorMaximoRam.setText(valorMaximoRam.toString() + "%");
         lblValorMinimoRam.setText(valorMinimoRam.toString() + "%");
         lblValorMediaRam.setText(mediaRam.toString() + "%");
-        
+        //------------------------------------------------------------------//
     }//GEN-LAST:event_botaoLerDadosActionPerformed
 
     private void botaoLerDadosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botaoLerDadosKeyPressed
